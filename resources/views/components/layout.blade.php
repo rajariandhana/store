@@ -18,7 +18,7 @@
         <x-navbar></x-navbar>
         {{-- <x-header>{{$title}}</x-header> --}}
         <main>
-            <div class="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="py-6 mx-auto max-w-7xl px-6 sm:px-6 lg:px-8 bg-yellow-100">
                 {{$slot}}
             </div>
         </main>
