@@ -32,7 +32,11 @@
                 </svg>
                 {{-- BrandName --}}
             </x-nav-link>
-            <x-nav-link href="/products" :active="request()->is('products')">Products</x-nav-link>
+            {{-- <x-nav-link href="/products" :active="request()->is('products')">Products</x-nav-link> --}}
+            <x-nav-link href="/top" :active="request()->is('top')">Top</x-nav-link>
+            <x-nav-link href="/bottom" :active="request()->is('bottom')">Bottom</x-nav-link>
+            <x-nav-link href="/footwear" :active="request()->is('footwear')">Footwear</x-nav-link>
+
             <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
             <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
         </div>

@@ -16,3 +16,10 @@ Route::get('/products', function () {
         //use paginate or simplePaginate
     ]);
 });
+Route::get('products/{category:slug}',function(Category $category){
+    return view('products',['title'=> 'Products in: ' . $category->name,'products'=>$category->products]);
+});
+Route::get('/top',function(){
+    $products = Product::where('category_id','like','1')->get();
+    return view('products',['title'=> 'Top', 'products'=>$products]);
+});
