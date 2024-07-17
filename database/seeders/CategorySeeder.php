@@ -13,21 +13,21 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([ 
+        Category::create([
             'name'=>'Top',
-            'slug'=>'top',
+            'category_id'=>'top',
         ]);
         Category::create([
             'name'=>'Bottom',
-            'slug'=>'bottom',
+            'category_id'=>'bottom',
         ]);
         Category::create([
             'name'=>'Footwear',
-            'slug'=>'footwear',
+            'category_id'=>'footwear',
         ]);
         Category::create([
             'name'=>'Other',
-            'slug'=>'other',
+            'category_id'=>'other',
         ]);
     }
 }

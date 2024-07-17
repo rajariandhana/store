@@ -10,12 +10,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'productID';
+
+    protected $primaryKey = 'product_id';
     public $incrementing = false;
-    protected $keyType = 'char';
-    protected $with = ['category'];
-    protected $fillable = ['productID','name','price','sizes','colors'];
-    public function category(): BelongsTo{
+    protected $keyType = 'string';
+
+    protected $with = ['category_id'];
+    protected $fillable = ['product_id','name','price','sizes','colors'];
+
+    public function category_id(): BelongsTo{
         return $this->belongsTo(Category::class);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,10 +17,10 @@ Route::get('/products', function () {
         //use paginate or simplePaginate
     ]);
 });
-Route::get('products/{category:slug}',function(Category $category){
-    return view('products',['title'=> 'Products in: ' . $category->name,'products'=>$category->products]);
+Route::get('product/{product:product_id}',function(Product $product){
+    return view('product',['title'=> $product->name,'product'=>$product]);
 });
 Route::get('/top',function(){
-    $products = Product::where('category_id','like','1')->get();
+    $products = Product::where('category_id','like','top')->get();
     return view('products',['title'=> 'Top', 'products'=>$products]);
 });
