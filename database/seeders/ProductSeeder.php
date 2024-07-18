@@ -78,18 +78,18 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id'=>'footwear',
             'product_id'=>'f24001',
-            'name'=>'Short Pants',
+            'name'=>'Sneaker',
             'price'=>165000,
-            'sizes'=>'S|M|L',
-            'colors'=>'olive',
+            'sizes'=>'38|40|42',
+            'colors'=>'white',
         ]);
         Product::create([
             'category_id'=>'footwear',
             'product_id'=>'f24002',
-            'name'=>'Cargo Pants',
+            'name'=>'Sandal',
             'price'=>245000,
-            'sizes'=>'S|M|L',
-            'colors'=>'black|gray|olive',
+            'sizes'=>'38|40|42',
+            'colors'=>'black|red',
         ]);
     }
 }

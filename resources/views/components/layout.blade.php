@@ -13,12 +13,13 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="h-full bg-gray-50 bg-red-100 md:bg-green-100 lg:bg-blue-100">
+{{-- <body class="h-full bg-gray-50 bg-red-100 md:bg-green-100 lg:bg-blue-100"> --}}
+<body class="h-full">
     <div class="min-h-full">
         <x-navbar></x-navbar>
         {{-- <x-header>{{$title}}</x-header> --}}
         <main>
-            <div class="py-6 mx-auto max-w-7xl px-6 sm:px-6 lg:px-8 bg-yellow-100">
+            <div class="py-6 mx-auto max-w-7xl px-6 sm:px-6 lg:px-8 flex justify-center">
                 {{$slot}}
             </div>
         </main>
