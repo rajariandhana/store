@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,5 @@ Route::get('/other',function(){
     $products = Product::where('category_id','like','other')->get();
     return view('products',['title'=> 'Other', 'products'=>$products]);
 });
+
+Route::post('/',[CartController::class,'store'])->name('cart.store');
