@@ -1,5 +1,5 @@
-<nav x-data"{navOpen:false}" class="py-4 shadow-sm bg-white">
-    <div class="flex px-4 justify-between md:hidden">
+<nav x-data"{navOpen:false}" class="py-4 bg-white shadow-sm">
+    <div class="flex justify-between px-4 md:hidden">
         <x-nav-link href="/" :active="request()->is('/')">
             <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                 height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -15,14 +15,14 @@
             </svg>
         </button>
     </div>
-    {{-- <div class="top bg-gray-600">
+    {{-- <div class="bg-gray-600 top">
         <ul>
             <li><a href="">Products</a></li>
             <li><a href="">Products</a></li>
             <li><a href="">Products</a></li>
         </ul>
     </div> --}}
-    <div class="justify-between px-4 hidden md:flex">
+    <div class="justify-between hidden px-4 md:flex">
         <div class="flex">
             <x-nav-link href="/" :active="request()->is('/')">
                 <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -49,7 +49,7 @@
                 </svg>
 
             </x-nav-link>
-            <x-nav-link href="/">
+            <x-nav-link href="/cart">
                 <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
