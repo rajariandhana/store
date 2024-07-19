@@ -41,3 +41,7 @@ Route::get('/other',function(){
 });
 
 Route::post('/',[CartController::class,'store'])->name('cart.store');
+
+Route::get('/cart',function(){
+    return view('cart',['title'=>'Cart','items'=>session()->all()]);
+});

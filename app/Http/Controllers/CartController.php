@@ -23,7 +23,6 @@ class CartController extends Controller
         //         'color'=>$request->input('Color')
         //     ]
         // );
-        // return redirect('home');
         $product=Product::findOrFail($request->input('product_id'));
         $product_id=$request->input('product_id');
         $selectedSize=$request->input('selectedSize');
@@ -34,6 +33,8 @@ class CartController extends Controller
         // dump($selectedColor);
         $key=self::CreateKey($product_id,$selectedSize,$selectedColor);
         // dump($key);
+        self::IncrementItem($key);
+        return redirect('/');
 
         // $parsed_product_id;
         // $parsed_selectedSize;
@@ -42,14 +43,18 @@ class CartController extends Controller
         // dump($parsed_product_id);
         // dump($parsed_selectedSize);
         // dump($parsed_selectedColor);
+        
     }
-    private function AddItem($key){
+    private function IncrementItem($key){
         $value = session($key,0);
         session([$key=>$value++]);
     }
-    private function RemoveItem($key){
+    private function DecrementItem($key){
         $value = session($key,1);
         session([$key=>$value--]);
+        if($value==0){
+            session()->forget($key);
+        }
     }
     private function CreateKey($product_id, $selectedSize, $selectedColor){
         // $key = "|cart|".$product_id.'|'.$selectedColor.'|'.$selectedSize.'|';
