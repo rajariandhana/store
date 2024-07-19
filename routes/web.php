@@ -43,13 +43,13 @@ Route::get('other',function(){
     return view('products',['title'=> 'Other', 'products'=>$products]);
 });
 
-// Route::get('cart',function(){
-//     return view('cart',
-//         [
-//             'title'=>'Cart',
-//             'items'=>[CartController::class,'GetItems']
-//         ]);
-// });
+Route::get('cart',function(){
+    return view('cart',
+        [
+            'title'=>'Cart',
+            'items'=>[CartController::class,'GetItems']
+        ]);
+});
 Route::get('cart',[CartController::class,'ShowCart']);
 
 Route::post('/cartStore',[CartController::class,'store']);

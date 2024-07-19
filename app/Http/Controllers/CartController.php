@@ -22,29 +22,31 @@ class CartController extends Controller
     }
     public function GetItems(){
         $sess = session()->all();
-        dump($sess);
+        // dump($sess);
         $items=[];
-        foreach($sess as $ses){
+        foreach($sess as $key=>$value){
+            if(substr($key,0,6)!="|cart|") continue;
             $product_id = "";
             $selectedSize = "";
             $selectedColor = "";
-            if(self::KeyValid(session($ses),$product_id,$selectedSize,$selectedColor)){
+            self::ParseKey($key,$product_id,$selectedSize,$selectedColor);
+            if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
                 $item = [];
+                $product=Product::find($product_id);
                 $item['product_id'] = $product_id;
+                $item['name'] = $product->name;
+                $item['price'] = $product->price;
+                $item['qty'] = $value;
                 $item['selectedSize'] = $selectedSize;
                 $item['selectedColor'] = $selectedColor;
                 array_push($items,$item);
             }
-
         }
-
         return $items;
     }
-    public function KeyValid($key,&$product_id,&$selectedSize,&$selectedColor){
+    public function KeyValid($key,$product_id,$selectedSize,$selectedColor){
         // |cart|xxxxxx|s:L|c:blue|
-        if(!substr($key,0,6)=="|cart|") return false;
-        self::ParseKey($key,$product_id,$selectedSize,$selectedColor);
-
+        if(substr($key,0,6)!="|cart|") return false;
         $product = Product::find($product_id);
         if($product==NULL) return false;
         if(!str_contains($product->sizes,$selectedSize)) return false;
@@ -52,19 +54,7 @@ class CartController extends Controller
         return true;
     }
     public function store(Request $request){
-        // dont forget to validate
-        // $product = Product::findOrFail($request->input('product_id'));
-        // Cart::add(
-        //     $product->product_id,
-        //     $product->name,
-        //     $request->input('quantity'),
-        //     $product->price,
-        //     0,
-        //     [
-        //         'size'=>$request->input('Size'),
-        //         'color'=>$request->input('Color')
-        //     ]
-        // );
+
         $product=Product::findOrFail($request->input('product_id'));
         $product_id=$request->input('product_id');
         $selectedSize=$request->input('selectedSize');
@@ -75,17 +65,10 @@ class CartController extends Controller
         // dump($selectedColor);
         $key=self::CreateKey($product_id,$selectedSize,$selectedColor);
         // dump($key);
-        self::IncrementItem($key);
+        if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
+            self::IncrementItem($key);
+        }
         return redirect('/cart');
-
-        // $parsed_product_id;
-        // $parsed_selectedSize;
-        // $parsed_selectedColor;
-        // self::ParseKey($key, $parsed_product_id,$parsed_selectedSize,$parsed_selectedColor);
-        // dump($parsed_product_id);
-        // dump($parsed_selectedSize);
-        // dump($parsed_selectedColor);
-
     }
     private function IncrementItem($key){
         $value = session($key,0);
@@ -97,7 +80,7 @@ class CartController extends Controller
         $value--;
         session([$key=>$value]);
         if($value==0){
-            // session()->forget($key);
+            session()->forget($key);
         }
     }
     private function CreateKey($product_id, $selectedSize, $selectedColor){
@@ -106,10 +89,11 @@ class CartController extends Controller
         return $key;
     }
 
-    private function ParseKey(string $s, &$product_id, &$selectedSize, &$selectedColor){
+    private function ParseKey($s, &$product_id, &$selectedSize, &$selectedColor){
         // key: |cart|product_id|s:|c:|
         // value: quantity
         $splits = explode('|',$s);
+        // dump($splits);
         $product_id=$splits[2];
         $selectedSize=$splits[3];
         $selectedColor=$splits[4];
