@@ -1,12 +1,17 @@
 <x-layout>
-    <form action="cartClear" method="POST">
-        @csrf
-        <button type="submit">clear cart</button>
-    </form>
-    @foreach ($items as $item)
-    {{-- {{$item}} --}}
-        {{-- <x-cart-item :item="$item">
+    <div class="flex flex-col">
+        <div>
+            <form action="cartClear" method="POST">
+                @csrf
+                <button type="submit">clear cart</button>
+            </form>
+        </div>
+        <div class="flex flex-col gap-3">
+            @foreach ($items as $item)
+                <x-cart-item :item="$item">
 
-        </x-cart-item> --}}
-    @endforeach
+                </x-cart-item>
+            @endforeach
+        </div>
+    </div>
 </x-layout>
