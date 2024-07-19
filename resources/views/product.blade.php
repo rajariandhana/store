@@ -10,7 +10,7 @@
             <div>
                 <h2 class="font-semibold ">{{ $product->name }}</h2>
                 <h3 class="font-normal">IDR {{ $product->price }}</h3>
-                <form method="POST" action="{{route('cart.store')}}"
+                <form method="POST" action="/cartStore"
                     class="mt-2  lg:mt-4" >
                     @csrf
                     <input type="hidden" name="product_id" value="{{$product->product_id}}">

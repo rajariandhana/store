@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home',['title'=>'Home Page']);
 });
-Route::get('/products', function () {
+Route::get('home', function () {
+    return view('home',['title'=>'Home Page']);
+});
+Route::get('products', function () {
     $products = Product::get();
     dump($products);
     return view('products',
@@ -23,25 +26,32 @@ Route::get('product/{product:product_id}',function(Product $product){
 });
 
 
-Route::get('/top',function(){
+Route::get('top',function(){
     $products = Product::where('category_id','like','top')->get();
     return view('products',['title'=> 'Top', 'products'=>$products]);
 });
-Route::get('/bottom',function(){
+Route::get('bottom',function(){
     $products = Product::where('category_id','like','bottom')->get();
     return view('products',['title'=> 'Bottom', 'products'=>$products]);
 });
-Route::get('/footwear',function(){
+Route::get('footwear',function(){
     $products = Product::where('category_id','like','footwear')->get();
     return view('products',['title'=> 'Footwear', 'products'=>$products]);
 });
-Route::get('/other',function(){
+Route::get('other',function(){
     $products = Product::where('category_id','like','other')->get();
     return view('products',['title'=> 'Other', 'products'=>$products]);
 });
 
-Route::post('/',[CartController::class,'store'])->name('cart.store');
+// Route::get('cart',function(){
+//     return view('cart',
+//         [
+//             'title'=>'Cart',
+//             'items'=>[CartController::class,'GetItems']
+//         ]);
+// });
+Route::get('cart',[CartController::class,'ShowCart']);
 
-Route::get('/cart',function(){
-    return view('cart',['title'=>'Cart','items'=>session()->all()]);
-});
+Route::post('/cartStore',[CartController::class,'store']);
+Route::post('cartClear',[CartController::class,'Clear']);
+

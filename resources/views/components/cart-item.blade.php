@@ -4,4 +4,5 @@
     {{-- <div>qty</div> --}}
     {{-- <div>{{$product->price}}</div> --}}
     {{-- <div>{{$product->price}} * qty</div> --}}
+    {{$item}}
 </div>
