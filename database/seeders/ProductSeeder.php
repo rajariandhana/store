@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24001',
             'name'=>'Oversized T-Shirt',
             'price'=>120000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'black|white|red|blue',
         ]);
         Product::create([
@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24002',
             'name'=>'Classic T-Shirt',
             'price'=>95000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'black|white',
         ]);
         Product::create([
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24003',
             'name'=>'Long Sleeve T-Shirt',
             'price'=>140000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'red|blue',
         ]);
         Product::create([
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24004',
             'name'=>'Classic Hoodie',
             'price'=>230000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'gray|purple|pink',
         ]);
         Product::create([
@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24005',
             'name'=>'Oversized T-Shirt',
             'price'=>120000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'black|white|red|blue',
         ]);
         Product::create([
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24006',
             'name'=>'Classic T-Shirt',
             'price'=>95000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'black|white',
         ]);
         Product::create([
@@ -66,7 +66,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24007',
             'name'=>'Long Sleeve T-Shirt',
             'price'=>140000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'red|blue',
         ]);
         Product::create([
@@ -74,7 +74,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'t24008',
             'name'=>'Classic Hoodie',
             'price'=>230000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'gray|purple|pink',
         ]);
 
@@ -85,7 +85,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'b24001',
             'name'=>'New Jeans',
             'price'=>235000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'black|beige',
         ]);
         Product::create([
@@ -93,7 +93,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'b24002',
             'name'=>'Short Pants',
             'price'=>165000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'olive',
         ]);
         Product::create([
@@ -101,7 +101,7 @@ class ProductSeeder extends Seeder
             'product_id'=>'b24003',
             'name'=>'Cargo Pants',
             'price'=>245000,
-            'sizes'=>'S|M|L',
+            'sizes'=>'Small|Medium|Large',
             'colors'=>'black|gray|olive',
         ]);
 
