@@ -11,6 +11,7 @@
     {{-- @vite(['resources/css/app.css','resources/js/app.js']) --}}
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @livewireStyles
 </head>
 
 {{-- <body class="h-full bg-gray-50 bg-red-100 md:bg-green-100 lg:bg-blue-100"> --}}
@@ -21,13 +22,14 @@
         <main>
             <div class="py-6 mx-auto max-w-7xl px-6 sm:px-6 lg:px-8 flex justify-center">
                 {{$slot}}
+                @yield('content')
             </div>
         </main>
         <x-footer>
 
         </x-footer>
     </div>
-
+    @livewireScripts
 </body>
 
 </html>

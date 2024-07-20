@@ -53,16 +53,17 @@ class CartController extends Controller
         if(!str_contains($product->colors,$selectedColor)) return false;
         return true;
     }
-    public function store(Request $request){
-        $validated = $request->validate([
-            'product_id'=>'required',
-            'selectedSize'=>'required',
-            'selectedColor'=>'required',
-        ]);
-        $product=Product::findOrFail($request->input('product_id'));
-        $product_id=$request->input('product_id');
-        $selectedSize=$request->input('selectedSize');
-        $selectedColor=$request->input('selectedColor');
+    public function store($product_id,$selectedSize,$selectedColor){
+        // $validated = $request->validate([
+        //     'product_id'=>'required',
+        //     'selectedSize'=>'required',
+        //     'selectedColor'=>'required',
+        // ]);
+        // $product=Product::findOrFail($request->input('product_id'));
+        // $product_id=$request->input('product_id');
+        // $selectedSize=$request->input('selectedSize');
+        // $selectedColor=$request->input('selectedColor');
+        $product = Product::findOrFail($product_id);
 
         // dump($product_id);
         // dump($selectedSize);

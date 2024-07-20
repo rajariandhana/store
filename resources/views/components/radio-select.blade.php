@@ -5,7 +5,7 @@
     <div class="flex gap-3">
         @foreach (explode($delimiter, $options) as $option)
             <label class="cursor-pointer">
-                <input type="radio" class="peer sr-only" name="selected{{$name}}"
+                <input wire:model="{{$wireKey}}" type="radio" class="peer sr-only" name="{{$wireKey}}"
                     value="{{ $option }}" />
                 <div
                     class="flex justify-center items-center rounded-md px-4 py-1 transition-all
@@ -15,5 +15,11 @@
                 </div>
             </label>
         @endforeach
+
     </div>
+    @error($wireKey)
+        <span class="text-red-500 text-xs">
+            {{$name}} is required
+        </span>
+    @enderror
 </div>

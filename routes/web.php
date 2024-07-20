@@ -4,7 +4,11 @@ use App\Http\Controllers\CartController;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\ShowProduct;
 
+Route::get('test', function () {
+    return view('main2',['title'=>'test Page']);
+});
 Route::get('/', function () {
     return view('home',['title'=>'Home Page']);
 });
@@ -22,8 +26,12 @@ Route::get('products', function () {
     ]);
 });
 Route::get('product/{product:product_id}',function(Product $product){
-    return view('product',['title'=> $product->name,'product'=>$product]);
+    return view('product',[
+        'title'=> $product->name,
+        'product'=>$product
+    ]);
 });
+// Route::get('product/{product_id}',ShowProduct::class);
 
 
 Route::get('top',function(){
