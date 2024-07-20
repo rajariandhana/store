@@ -54,7 +54,11 @@ class CartController extends Controller
         return true;
     }
     public function store(Request $request){
-
+        $validated = $request->validate([
+            'product_id'=>'required',
+            'selectedSize'=>'required',
+            'selectedColor'=>'required',
+        ]);
         $product=Product::findOrFail($request->input('product_id'));
         $product_id=$request->input('product_id');
         $selectedSize=$request->input('selectedSize');
