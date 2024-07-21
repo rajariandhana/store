@@ -31,7 +31,7 @@ class CartItem extends Component
             $this->quantity = $this->quantity;
         }
         $cc = new CartController();
-        $cc = app(CartController::class);
+        // $cc = app(CartController::class);
         $cc->setQuantity($this->item['key'],$this->quantity);
     }
     public function tes(){

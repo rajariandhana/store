@@ -24,8 +24,6 @@
                 {{$slot}}
                 {{-- @yield('content') --}}
             </div>
-        @livewire('test-comp')
-
         </main>
         <x-footer>
 

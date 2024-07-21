@@ -18,7 +18,7 @@ class CartController extends Controller
     }
     public function Clear(){
         session()->flush();
-        return redirect('cart');
+        // return redirect('cart');
     }
     public function GetItems(){
         $sess = session()->all();
