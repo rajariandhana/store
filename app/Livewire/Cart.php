@@ -9,13 +9,16 @@ class Cart extends Component
 {
     public $items;
 
-    public function mount($items)
+    public function mount()
     {
-        $this->items = $items;
+        $cc = new CartController();
+        $this->items = $cc->GetItems();
     }
     public function clearCart(){
         $cc = new CartController();
         $cc->Clear();
+        $this->items = $cc->GetItems();
+
         // $this->items = $items;
 
     }

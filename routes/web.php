@@ -55,7 +55,7 @@ Route::get('cart',function(){
     return view('cart',
         [
             'title'=>'Cart',
-            'items'=>[CartController::class,'GetItems']
+            // 'items'=>[CartController::class,'GetItems']
         ]);
 });
 Route::get('cart',[CartController::class,'ShowCart']);
