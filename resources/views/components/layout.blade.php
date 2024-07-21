@@ -22,8 +22,10 @@
         <main>
             <div class="flex justify-center px-6 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {{$slot}}
-                @yield('content')
+                {{-- @yield('content') --}}
             </div>
+        @livewire('test-comp')
+
         </main>
         <x-footer>
 

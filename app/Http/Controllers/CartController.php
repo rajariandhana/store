@@ -34,11 +34,13 @@ class CartController extends Controller
                 $item = [];
                 $product=Product::find($product_id);
                 $item['product_id'] = $product_id;
-                $item['name'] = $product->name;
-                $item['price'] = $product->price;
+                $item['key']=$key;
+                // $item['name'] = $product->name;
+                // $item['price'] = $product->price;
                 $item['quantity'] = $value;
-                $item['selectedSize'] = $selectedSize;
-                $item['selectedColor'] = $selectedColor;
+                // $item['selectedSize'] = $selectedSize;
+                // $item['selectedColor'] = $selectedColor;
+                $item['variant'] = $selectedSize." - ".$selectedColor;
                 array_push($items,$item);
             }
         }
@@ -86,6 +88,16 @@ class CartController extends Controller
         session([$key=>$value]);
         if($value==0){
             session()->forget($key);
+        }
+    }
+    public function setQuantity($key,$quantity){
+        // dump(69);
+        $product_id = "";
+        $selectedSize = "";
+        $selectedColor = "";
+        self::ParseKey($key,$product_id,$selectedSize,$selectedColor);
+        if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
+            session([$key=>$quantity]);
         }
     }
     private function CreateKey($product_id, $selectedSize, $selectedColor){
