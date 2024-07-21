@@ -36,5 +36,6 @@
             </svg>
         </button>
     </div>
+    <button @click="$wire.removeItem()">remove</button>
     <span x-text="quantity >=1 && quantity<=10? quantity * price:'error'"></span>
 </div>

@@ -46,6 +46,24 @@ class CartController extends Controller
         }
         return $items;
     }
+    public function GetTotalPrice(){
+        $items = self::GetItems();
+        $totalPrice=0;
+        foreach($items as $item){
+            $product=Product::find($item['product_id']);
+            $totalPrice += $product->price * $item['quantity'];
+        }
+        return $totalPrice;
+    }
+    public function GetTotalItems(){
+        $items = self::GetItems();
+        $totalItems=0;
+        foreach($items as $item){
+            $product=Product::find($item['product_id']);
+            $totalItems += $item['quantity'];
+        }
+        return $totalItems;
+    }
     public function KeyValid($key,$product_id,$selectedSize,$selectedColor){
         // |cart|xxxxxx|s:L|c:blue|
         if(substr($key,0,6)!="|cart|") return false;
@@ -54,6 +72,9 @@ class CartController extends Controller
         if(!str_contains($product->sizes,$selectedSize)) return false;
         if(!str_contains($product->colors,$selectedColor)) return false;
         return true;
+    }
+    public function RemoveItem($key){
+        session()->forget($key);
     }
     public function store($product_id,$selectedSize,$selectedColor){
         // $validated = $request->validate([

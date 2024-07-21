@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Http\Controllers\CartController;
+
 use App\Models\Product;
 
 use Livewire\Component;
@@ -22,6 +23,11 @@ class CartItem extends Component
         $this->price = $this->product->price;
         // $this->updateTotalPrice();
     }
+    public function removeItem(){
+        $cc = new CartController();
+        $cc->RemoveItem($this->item['key']);
+        $this->item = null;
+    }
     public function setQuantity(){
         if ($this->quantity > 10) {
             $this->quantity = 10;
@@ -31,7 +37,6 @@ class CartItem extends Component
             $this->quantity = $this->quantity;
         }
         $cc = new CartController();
-        // $cc = app(CartController::class);
         $cc->setQuantity($this->item['key'],$this->quantity);
     }
     public function tes(){
