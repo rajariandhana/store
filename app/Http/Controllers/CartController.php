@@ -36,7 +36,7 @@ class CartController extends Controller
                 $item['product_id'] = $product_id;
                 $item['name'] = $product->name;
                 $item['price'] = $product->price;
-                $item['qty'] = $value;
+                $item['quantity'] = $value;
                 $item['selectedSize'] = $selectedSize;
                 $item['selectedColor'] = $selectedColor;
                 array_push($items,$item);

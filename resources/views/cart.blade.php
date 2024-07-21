@@ -1,7 +1,7 @@
 <x-layout>
     <div class="flex flex-row gap-10">
 
-        <div class="bg-red-400 flex flex-col gap-3">
+        <div class="flex flex-col gap-3 bg-red-400">
             @foreach ($items as $item)
                 <livewire:cart-item :item="$item"/>
             @endforeach
