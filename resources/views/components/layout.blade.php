@@ -14,16 +14,18 @@
     @livewireStyles
 </head>
 
-{{-- <body class="h-full bg-gray-50 bg-red-100 md:bg-green-100 lg:bg-blue-100"> --}}
+{{-- <body class="h-full bg-red-100 bg-gray-50 md:bg-green-100 lg:bg-blue-100"> --}}
 <body class="h-full">
     <div class="min-h-full">
         <x-navbar></x-navbar>
         {{-- <x-header>{{$title}}</x-header> --}}
         <main>
-            <div class="py-6 mx-auto max-w-7xl px-6 sm:px-6 lg:px-8 flex justify-center">
+            <div class="flex justify-center px-6 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {{$slot}}
-                @yield('content')
+                {{-- @yield('content') --}}
             </div>
+        @livewire('test-comp')
+
         </main>
         <x-footer>
 

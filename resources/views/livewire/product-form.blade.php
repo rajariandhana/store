@@ -13,7 +13,7 @@
         </x-radio-select>
 
         <button
-            class="flex items-center justify-center w-auto px-8 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            class="flex items-center justify-center w-auto px-8 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-xl hover:bg-indigo-700">
             Add to Cart
         </button>
     </form>
