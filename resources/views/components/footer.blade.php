@@ -12,12 +12,12 @@
             ['name' => 'Privacy Policy', 'link' => '/privacy_and_policy'],
         ];
     @endphp
-    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+    <div class="w-full max-w-screen-xl p-4 py-6 mx-auto lg:py-8">
         <hr class="my-3 border-gray-400 sm:mx-auto lg:my-4" />
-        <div class="flex flex-col lg:flex-row justify-between">
+        <div class="flex flex-col justify-between lg:flex-row">
             <div class="justify-between mb-4">
                 <div>
-                    <span class="text-md text-gray-500 ">© 2024
+                    <span class="text-gray-500 text-md ">© 2024
                         <a href="https://store.test" class="text-gray-900 no-underline hover:underline">CompanyName</a>.
                         All Rights Reserved.
                     </span>
