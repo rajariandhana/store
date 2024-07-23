@@ -16,66 +16,74 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24001',
-            'name'=>'Oversized T-Shirt',
-            'price'=>120000,
+            'name'=>'Oversized Striped T-Shirt',
+            'price'=>249000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'black|white|red|blue',
+            'colors'=>'Pink|Olive|Navy',
         ]);
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24002',
             'name'=>'Classic T-Shirt',
-            'price'=>95000,
+            'price'=>199000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'black|white',
+            'colors'=>'Black|White|Red|Blue|Green|Brown|Gray|Navy',
         ]);
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24003',
             'name'=>'Long Sleeve T-Shirt',
-            'price'=>140000,
-            'sizes'=>'Small|Medium|Large',
+            'price'=>199000,
+            'sizes'=>'Gray|Black|Orange|Navy|Beige',
             'colors'=>'red|blue',
         ]);
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24004',
-            'name'=>'Classic Hoodie',
-            'price'=>230000,
+            'name'=>'Open Collar Shirt',
+            'price'=>299000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'gray|purple|pink',
+            'colors'=>'Wine|Black',
         ]);
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24005',
-            'name'=>'Oversized T-Shirt',
-            'price'=>120000,
+            'name'=>'Pullover Waffle Long Sleeve',
+            'price'=>299000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'black|white|red|blue',
+            'colors'=>'Beige|Gray|Dark Green|Black|White',
         ]);
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24006',
-            'name'=>'Classic T-Shirt',
-            'price'=>95000,
+            'name'=>'Classic Open Collar Shirt',
+            'price'=>299000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'black|white',
+            'colors'=>'Brown|Beige|Blue|Black|White|Olive',
         ]);
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24007',
-            'name'=>'Long Sleeve T-Shirt',
-            'price'=>140000,
+            'name'=>'Pullover Sweat Hoodie',
+            'price'=>499000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'red|blue',
+            'colors'=>'Gray|Mint|Navy|Dark Gray|Black|White',
         ]);
         Product::create([
             'category_id'=>'top',
             'product_id'=>'t24008',
-            'name'=>'Classic Hoodie',
-            'price'=>230000,
+            'name'=>'Open Collar Shirt',
+            'price'=>299000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'gray|purple|pink',
+            'colors'=>'Blue|White',
+        ]);
+        Product::create([
+            'category_id'=>'top',
+            'product_id'=>'t24009',
+            'name'=>'Jersey Long Sleeve Shirt',
+            'price'=>599000,
+            'sizes'=>'Small|Medium|Large',
+            'colors'=>'Beige|Off White|Olive',
         ]);
 
 
@@ -83,26 +91,58 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id'=>'bottom',
             'product_id'=>'b24001',
-            'name'=>'New Jeans',
-            'price'=>235000,
-            'sizes'=>'Small|Medium|Large',
-            'colors'=>'black|beige',
+            'name'=>'Wide Fit Chino Pants',
+            'price'=>599000,
+            'sizes'=>'76cm|79cm|82cm|85cm',
+            'colors'=>'Brown|Dark Brown|Black',
         ]);
         Product::create([
             'category_id'=>'bottom',
             'product_id'=>'b24002',
-            'name'=>'Short Pants',
-            'price'=>165000,
+            'name'=>'Cargo Pants',
+            'price'=>599000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'olive',
+            'colors'=>'Olive|Navy|Black|Off White',
         ]);
         Product::create([
             'category_id'=>'bottom',
             'product_id'=>'b24003',
-            'name'=>'Cargo Pants',
-            'price'=>245000,
+            'name'=>'Ultra Stretch Jeans',
+            'price'=>499000,
             'sizes'=>'Small|Medium|Large',
-            'colors'=>'black|gray|olive',
+            'colors'=>'Beige|Olive|Navy|Black',
+        ]);
+        Product::create([
+            'category_id'=>'bottom',
+            'product_id'=>'b24004',
+            'name'=>'Jogger Cargo Pants',
+            'price'=>599000,
+            'sizes'=>'Small|Medium|Large',
+            'colors'=>'Olive|Black|Gray|Beige',
+        ]);
+        Product::create([
+            'category_id'=>'bottom',
+            'product_id'=>'b24005',
+            'name'=>'Dry Stretch Shorts',
+            'price'=>299000,
+            'sizes'=>'Small|Medium|Large',
+            'colors'=>'Dark Gray|Black|Pink|Beige|Green|Blue',
+        ]);
+        Product::create([
+            'category_id'=>'bottom',
+            'product_id'=>'b24006',
+            'name'=>'Chino Shorts',
+            'price'=>299000,
+            'sizes'=>'Small|Medium|Large',
+            'colors'=>'Brown|Red|Black|Beige|Navy',
+        ]);
+        Product::create([
+            'category_id'=>'bottom',
+            'product_id'=>'b24007',
+            'name'=>'DRY-EX Ultra Stretch Shorts',
+            'price'=>299000,
+            'sizes'=>'Small|Medium|Large',
+            'colors'=>'Black|Dark Gray|White',
         ]);
 
 
@@ -110,18 +150,26 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id'=>'footwear',
             'product_id'=>'f24001',
-            'name'=>'Sneaker',
-            'price'=>165000,
+            'name'=>'Cotton Canvas Shoe',
+            'price'=>499000,
             'sizes'=>'38|40|42',
-            'colors'=>'white',
+            'colors'=>'Beige|Black|White',
         ]);
         Product::create([
             'category_id'=>'footwear',
             'product_id'=>'f24002',
-            'name'=>'Sandal',
-            'price'=>245000,
+            'name'=>'Sneakers',
+            'price'=>599000,
             'sizes'=>'38|40|42',
-            'colors'=>'black|red',
+            'colors'=>'Black|White',
+        ]);
+        Product::create([
+            'category_id'=>'footwear',
+            'product_id'=>'f24003',
+            'name'=>'Knitted Sneakers',
+            'price'=>599000,
+            'sizes'=>'38|40|42',
+            'colors'=>'Off White|Black',
         ]);
     }
 }
