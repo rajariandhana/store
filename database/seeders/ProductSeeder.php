@@ -171,5 +171,13 @@ class ProductSeeder extends Seeder
             'sizes'=>'38|40|42',
             'colors'=>'Off White|Black',
         ]);
+        Product::create([
+            'category_id'=>'footwear',
+            'product_id'=>'f24004',
+            'name'=>'Canvas Slip On',
+            'price'=>599000,
+            'sizes'=>'38|40|42',
+            'colors'=>'Pink',
+        ]);
     }
 }
