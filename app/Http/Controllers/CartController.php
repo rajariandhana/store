@@ -33,15 +33,13 @@ class CartController extends Controller
             if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
                 $item = [];
                 $product=Product::find($product_id);
-                $item['product_id'] = $product_id;
-                $item['key']=$key;
-                // $item['name'] = $product->name;
-                // $item['price'] = $product->price;
-                $item['quantity'] = $value;
-                // $item['selectedSize'] = $selectedSize;
-                // $item['selectedColor'] = $selectedColor;
-                $item['variant'] = $selectedSize." - ".$selectedColor;
-                array_push($items,$item);
+                $items[]=[
+                    'key'=>$key,
+                    'product_id'=>$product_id,
+                    'variant'=>$selectedSize." - ".$selectedColor,
+                    'quantity'=>$value,
+                    'product'=>$product
+                ];
             }
         }
         return $items;
@@ -73,9 +71,7 @@ class CartController extends Controller
         if(!str_contains($product->colors,$selectedColor)) return false;
         return true;
     }
-    public function RemoveItem($key){
-        session()->forget($key);
-    }
+
     public function store($product_id,$selectedSize,$selectedColor){
         // $validated = $request->validate([
         //     'product_id'=>'required',
@@ -98,16 +94,21 @@ class CartController extends Controller
         }
         return redirect('/cart');
     }
-    private function IncrementItem($key){
+    public function IncrementItem($key){
         $value = session($key,0);
         $value++;
         session([$key=>$value]);
     }
-    private function DecrementItem($key){
+    public function DecrementItem($key){
         $value = session($key,1);
         $value--;
         session([$key=>$value]);
         if($value==0){
+            self::RemoveItem($key);
+        }
+    }
+    public function RemoveItem($key){
+        if (session()->has($key)) {
             session()->forget($key);
         }
     }
