@@ -29,6 +29,12 @@ class Cart extends Component
         $cc->DecrementItem($key);
         $this->items = $cc->GetItems();
     }
+    public function SetQuantity($key, $quantity)
+    {
+        $cc = new CartController();
+        $cc->SetQuantity($key,$quantity);
+        $this->items = $cc->getItems();
+    }
 
     public function RemoveItem($key)
     {
