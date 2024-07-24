@@ -113,14 +113,19 @@ class CartController extends Controller
             session()->forget($key);
         }
     }
-    public function setQuantity($key,$quantity){
+    public function SetQuantity($key,$quantity){
         // dump(69);
-        $product_id = "";
-        $selectedSize = "";
-        $selectedColor = "";
-        self::ParseKey($key,$product_id,$selectedSize,$selectedColor);
-        if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
-            session([$key=>$quantity]);
+        // $product_id = "";
+        // $selectedSize = "";
+        // $selectedColor = "";
+        // self::ParseKey($key,$product_id,$selectedSize,$selectedColor);
+        // if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
+        //     session([$key=>$quantity]);
+        // }
+        if ($quantity > 0) {
+            session([$key => $quantity]);
+        } else {
+            self::RemoveItem($key);
         }
     }
     private function CreateKey($product_id, $selectedSize, $selectedColor){
