@@ -16,36 +16,33 @@ class Cart extends Component
         $cc = new CartController();
         $this->items = $cc->GetItems();
     }
-    public function increaseQuantity($key)
+    public function IncrementItem($key)
     {
         $cc = new CartController();
         $cc->IncrementItem($key);
         $this->items = $cc->GetItems();
     }
 
-    public function decreaseQuantity($key)
+    public function DecrementItem($key)
     {
         $cc = new CartController();
         $cc->DecrementItem($key);
         $this->items = $cc->GetItems();
     }
 
-    public function removeItem($key)
+    public function RemoveItem($key)
     {
         $cc = new CartController();
         $cc->RemoveItem($key);
         $this->items = $cc->GetItems();
     }
-    public function clearCart(){
+    public function ClearCart(){
         $cc = new CartController();
         $cc->Clear();
         $this->items = $cc->GetItems();
-        $this->totalPrice = $cc->GetTotalPrice();
-        $this->totalItems = $cc->GetTotalItems();
-        // $this->items = $items;
     }
 
-    public function calculateTotalPrice()
+    public function TotalPrice()
     {
         $total = 0;
         foreach ($this->items as $item) {
@@ -54,7 +51,7 @@ class Cart extends Component
         return $total;
     }
 
-    public function calculateTotalItems()
+    public function TotalItems()
     {
         $total = 0;
         foreach ($this->items as $item) {
@@ -68,8 +65,8 @@ class Cart extends Component
         $cc = new CartController();
         return view('livewire.cart',[
             'items'=>$this->items,
-            'totalPrice' => $this->calculateTotalPrice(),
-            'totalItems' => $this->calculateTotalItems(),
+            'totalPrice' => $this->TotalPrice(),
+            'totalItems' => $this->TotalItems(),
         ]);
     }
 }

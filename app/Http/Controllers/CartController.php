@@ -44,24 +44,24 @@ class CartController extends Controller
         }
         return $items;
     }
-    public function GetTotalPrice(){
-        $items = self::GetItems();
-        $totalPrice=0;
-        foreach($items as $item){
-            $product=Product::find($item['product_id']);
-            $totalPrice += $product->price * $item['quantity'];
-        }
-        return $totalPrice;
-    }
-    public function GetTotalItems(){
-        $items = self::GetItems();
-        $totalItems=0;
-        foreach($items as $item){
-            $product=Product::find($item['product_id']);
-            $totalItems += $item['quantity'];
-        }
-        return $totalItems;
-    }
+    // public function TotalPrice(){
+    //     $items = self::GetItems();
+    //     $totalPrice=0;
+    //     foreach($items as $item){
+    //         $product=Product::find($item['product_id']);
+    //         $totalPrice += $product->price * $item['quantity'];
+    //     }
+    //     return $totalPrice;
+    // }
+    // public function TotalItems(){
+    //     $items = self::GetItems();
+    //     $totalItems=0;
+    //     foreach($items as $item){
+    //         $product=Product::find($item['product_id']);
+    //         $totalItems += $item['quantity'];
+    //     }
+    //     return $totalItems;
+    // }
     public function KeyValid($key,$product_id,$selectedSize,$selectedColor){
         // |cart|xxxxxx|s:L|c:blue|
         if(substr($key,0,6)!="|cart|") return false;
@@ -97,7 +97,8 @@ class CartController extends Controller
     public function IncrementItem($key){
         $value = session($key,0);
         $value++;
-        session([$key=>$value]);
+        if($value>10) session([$key=>10]);
+        else session([$key=>$value]);
     }
     public function DecrementItem($key){
         $value = session($key,1);

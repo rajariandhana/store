@@ -36,16 +36,32 @@ x-data="{ totalItems: @entangle('totalItems'), totalPrice: @entangle('totalPrice
         <tbody>
             @foreach($items as $item)
                 <tr>
-                    <td>{{ $item['product_id'] }}</td>
+                    <td>{{ $item['product']->name }}</td>
                     <td>{{ $item['variant'] }}</td>
                     <td>
-                        <button wire:click="decreaseQuantity('{{ $item['key'] }}')">-</button>
-                        {{ $item['quantity'] }}
-                        <button wire:click="increaseQuantity('{{ $item['key'] }}')">+</button>
+                        <div class="relative flex items-center max-w-[8rem]">
+                            <button wire:click="DecrementItem('{{ $item['key'] }}')"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11">
+                                <svg class="w-3 h-3 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 18 2">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M1 1h16" />
+                                </svg>
+                            </button>
+                            <span class="border border-gray-300 items-center">{{ $item['quantity'] }}</span>
+                            <button wire:click="IncrementItem('{{ $item['key'] }}')"
+                                class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11">
+                                <svg class="w-3 h-3 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 1v16M1 9h16" />
+                                </svg>
+                            </button>
+                        </div>
                     </td>
                     <td>{{ $item['quantity'] * $item['product']->price }}</td>
                     <td>
-                        <button wire:click="removeItem('{{ $item['key'] }}')">Remove</button>
+                        <button wire:click="RemoveItem('{{ $item['key'] }}')">Remove</button>
                     </td>
                 </tr>
             @endforeach
@@ -56,5 +72,8 @@ x-data="{ totalItems: @entangle('totalItems'), totalPrice: @entangle('totalPrice
     </div>
     <div>
         Total Price: {{ $totalPrice }}
+    </div>
+    <div>
+        <button wire:click="ClearCart">Clear Cart</button>
     </div>
 </div>
