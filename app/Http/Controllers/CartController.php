@@ -33,37 +33,35 @@ class CartController extends Controller
             if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
                 $item = [];
                 $product=Product::find($product_id);
-                $item['product_id'] = $product_id;
-                $item['key']=$key;
-                // $item['name'] = $product->name;
-                // $item['price'] = $product->price;
-                $item['quantity'] = $value;
-                // $item['selectedSize'] = $selectedSize;
-                // $item['selectedColor'] = $selectedColor;
-                $item['variant'] = $selectedSize." - ".$selectedColor;
-                array_push($items,$item);
+                $items[]=[
+                    'key'=>$key,
+                    'product_id'=>$product_id,
+                    'variant'=>$selectedSize." - ".$selectedColor,
+                    'quantity'=>$value,
+                    'product'=>$product
+                ];
             }
         }
         return $items;
     }
-    public function GetTotalPrice(){
-        $items = self::GetItems();
-        $totalPrice=0;
-        foreach($items as $item){
-            $product=Product::find($item['product_id']);
-            $totalPrice += $product->price * $item['quantity'];
-        }
-        return $totalPrice;
-    }
-    public function GetTotalItems(){
-        $items = self::GetItems();
-        $totalItems=0;
-        foreach($items as $item){
-            $product=Product::find($item['product_id']);
-            $totalItems += $item['quantity'];
-        }
-        return $totalItems;
-    }
+    // public function TotalPrice(){
+    //     $items = self::GetItems();
+    //     $totalPrice=0;
+    //     foreach($items as $item){
+    //         $product=Product::find($item['product_id']);
+    //         $totalPrice += $product->price * $item['quantity'];
+    //     }
+    //     return $totalPrice;
+    // }
+    // public function TotalItems(){
+    //     $items = self::GetItems();
+    //     $totalItems=0;
+    //     foreach($items as $item){
+    //         $product=Product::find($item['product_id']);
+    //         $totalItems += $item['quantity'];
+    //     }
+    //     return $totalItems;
+    // }
     public function KeyValid($key,$product_id,$selectedSize,$selectedColor){
         // |cart|xxxxxx|s:L|c:blue|
         if(substr($key,0,6)!="|cart|") return false;
@@ -73,9 +71,7 @@ class CartController extends Controller
         if(!str_contains($product->colors,$selectedColor)) return false;
         return true;
     }
-    public function RemoveItem($key){
-        session()->forget($key);
-    }
+
     public function store($product_id,$selectedSize,$selectedColor){
         // $validated = $request->validate([
         //     'product_id'=>'required',
@@ -98,27 +94,38 @@ class CartController extends Controller
         }
         return redirect('/cart');
     }
-    private function IncrementItem($key){
+    public function IncrementItem($key){
         $value = session($key,0);
         $value++;
-        session([$key=>$value]);
+        if($value>10) session([$key=>10]);
+        else session([$key=>$value]);
     }
-    private function DecrementItem($key){
+    public function DecrementItem($key){
         $value = session($key,1);
         $value--;
         session([$key=>$value]);
         if($value==0){
+            self::RemoveItem($key);
+        }
+    }
+    public function RemoveItem($key){
+        if (session()->has($key)) {
             session()->forget($key);
         }
     }
-    public function setQuantity($key,$quantity){
+    public function SetQuantity($key,$quantity){
         // dump(69);
-        $product_id = "";
-        $selectedSize = "";
-        $selectedColor = "";
-        self::ParseKey($key,$product_id,$selectedSize,$selectedColor);
-        if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
-            session([$key=>$quantity]);
+        // $product_id = "";
+        // $selectedSize = "";
+        // $selectedColor = "";
+        // self::ParseKey($key,$product_id,$selectedSize,$selectedColor);
+        // if(self::KeyValid($key,$product_id,$selectedSize,$selectedColor)){
+        //     session([$key=>$quantity]);
+        // }
+        if ($quantity > 0) {
+            session([$key => $quantity]);
+        } else {
+            self::RemoveItem($key);
         }
     }
     private function CreateKey($product_id, $selectedSize, $selectedColor){

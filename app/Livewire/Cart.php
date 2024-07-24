@@ -8,26 +8,71 @@ use Livewire\Component;
 class Cart extends Component
 {
     public $items;
-    public $totalPrice;
-    public $totalItems;
+    // public $totalPrice;
+    // public $totalItems;
 
     public function mount()
     {
         $cc = new CartController();
         $this->items = $cc->GetItems();
-        $this->totalPrice = $cc->GetTotalPrice();
-        $this->totalItems = $cc->GetTotalItems();
     }
-    public function clearCart(){
+    public function IncrementItem($key)
+    {
+        $cc = new CartController();
+        $cc->IncrementItem($key);
+        $this->items = $cc->GetItems();
+    }
+
+    public function DecrementItem($key)
+    {
+        $cc = new CartController();
+        $cc->DecrementItem($key);
+        $this->items = $cc->GetItems();
+    }
+    public function SetQuantity($key, $quantity)
+    {
+        $cc = new CartController();
+        $cc->SetQuantity($key,$quantity);
+        $this->items = $cc->getItems();
+    }
+
+    public function RemoveItem($key)
+    {
+        $cc = new CartController();
+        $cc->RemoveItem($key);
+        $this->items = $cc->GetItems();
+    }
+    public function ClearCart(){
         $cc = new CartController();
         $cc->Clear();
         $this->items = $cc->GetItems();
-        $this->totalPrice = $cc->GetTotalPrice();
-        $this->totalItems = $cc->GetTotalItems();
-        // $this->items = $items;
     }
+
+    public function TotalPrice()
+    {
+        $total = 0;
+        foreach ($this->items as $item) {
+            $total += $item['quantity'] * $item['product']->price;
+        }
+        return $total;
+    }
+
+    public function TotalItems()
+    {
+        $total = 0;
+        foreach ($this->items as $item) {
+            $total += $item['quantity'];
+        }
+        return $total;
+    }
+
     public function render()
     {
-        return view('livewire.cart');
+        $cc = new CartController();
+        return view('livewire.cart',[
+            'items'=>$this->items,
+            'totalPrice' => $this->TotalPrice(),
+            'totalItems' => $this->TotalItems(),
+        ]);
     }
 }
