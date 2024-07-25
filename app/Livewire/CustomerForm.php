@@ -9,21 +9,29 @@ use Illuminate\Support\Facades\Http;
 class CustomerForm extends Component
 {
     public $provinces;
-    public $cities;
     public $selectedProvince=null;
+    public $cities;
     public $selectedCity=null;
-    public $deliveryCost=null;
+    public $selectedCourier=null;
     public $itemsWeight=null;
     public $deliveryOptions=null;
+    public $selectedDelivery = null;
+    public $deliveryCost=null;
+    public $subTotal=null;
+    public $totalCost=null;
+
     public function mount(){
         $this->provinces = $this->GetProvinces();
         $this->selectedProvince = null;
         $this->cities = null;
         $this->selectedCity = null;
-        $this->deliveryCost=null;
-        $cc = new CartController;
-        $this->itemsWeight = $cc->GetWeight();
-        $this->deliveryOptions=null;
+        $this->selectedCourier = null;
+        $this->itemsWeight = null;
+        $this->deliveryOptions = null;
+        $this->selectedDelivery = null;
+        $this->deliveryCost = null;
+        $this->subTotal=null;
+        $this->totalCost=null;
     }
     public function render()
     {
@@ -40,20 +48,37 @@ class CustomerForm extends Component
         $this->selectedProvince = $province_id;
         $this->cities = $this->GetCities($province_id);
         $this->selectedCity = null;
-        $this->deliveryOptions=null;
-        $this->deliveryCost=null;
+        $this->selectedCourier = null;
+        $this->itemsWeight = null;
+        $this->deliveryOptions = null;
+        $this->selectedDelivery = null;
+        $this->deliveryCost = null;
+        $this->subTotal=null;
+        $this->totalCost=null;
     }
     public function SelectCity($city_id){
         // dd($city_id);
         $this->selectedCity = $city_id;
-        $this->deliveryCost=null;
-        $ops = $this->GetDeliveryCost($this->selectedCity,$this->itemsWeight);
-        // dd( $ops['rajaongkir']['results'][0]['costs']);
-        $this->deliveryCost=null;
-        $this->deliveryOptions=$ops['rajaongkir']['results'][0]['costs'];
-        // $this->deliveryCost=$this->GetDeliveryCost();
+        $this->selectedCourier = null;
+        $this->itemsWeight = null;
+        $this->deliveryOptions = null;
+        $this->selectedDelivery = null;
+        $this->deliveryCost = null;
+        $this->subTotal=null;
+        $this->totalCost=null;
     }
-    public function GetDeliveryCost($city_id,$weight){
+    public function SelectCourier($courier){
+        $this->selectedCourier = $courier;
+        $cc = new CartController;
+        $this->itemsWeight = $cc->GetWeight();
+        $ops = $this->GetDeliveryOptions($this->selectedCity,$this->itemsWeight,$this->selectedCourier);
+        $this->deliveryOptions = $ops['rajaongkir']['results'][0]['costs'];
+        $this->selectedDelivery = null;
+        $this->deliveryCost = null;
+        $this->subTotal=null;
+        $this->totalCost=null;
+    }
+    public function GetDeliveryOptions($city_id,$weight,$courier){
         $response = Http::withHeaders([
             // 'Content-Type' => 'application/x-www-form-urlencoded',
             'key' => env('API_RAJA_ONGKIR'),
@@ -61,17 +86,19 @@ class CustomerForm extends Component
             'origin' => 115,
             'destination' => $city_id,
             'weight' => $weight,
-            'courier' => 'jne'
+            'courier' => $courier
         ]);
             // jaksel 153, depok 115
         $fee = json_decode($response->getBody(),true);
         return $fee;
-
-        // if ($response->successful()) {
-        //     return $response->json();
-        // } else {
-        //     return response()->json(['error' => 'Unable to fetch data'], 500);
-        // }
+    }
+    public function SelectDelivery($key){
+        $this->selectedDelivery = $this->deliveryOptions[$key];
+        // dd($this->selectedDelivery);
+        $this->deliveryCost = $this->deliveryOptions[$key]['cost'][0]['value'];
+        $cc = new CartController;
+        $this->subTotal=$cc->TotalPrice();
+        $this->totalCost = $this->deliveryCost+$this->subTotal;
     }
 
     public function GetProvinces(){

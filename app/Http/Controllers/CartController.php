@@ -46,17 +46,17 @@ class CartController extends Controller
     }
     public function GetWeight(){
         $items = self::GetItems();
-        return count($items)*500;
+        return count($items)*200;
     }
-    // public function TotalPrice(){
-    //     $items = self::GetItems();
-    //     $totalPrice=0;
-    //     foreach($items as $item){
-    //         $product=Product::find($item['product_id']);
-    //         $totalPrice += $product->price * $item['quantity'];
-    //     }
-    //     return $totalPrice;
-    // }
+    public function TotalPrice(){
+        $items = self::GetItems();
+        $totalPrice=0;
+        foreach($items as $item){
+            $product=Product::find($item['product_id']);
+            $totalPrice += $product->price * $item['quantity'];
+        }
+        return $totalPrice;
+    }
     // public function TotalItems(){
     //     $items = self::GetItems();
     //     $totalItems=0;
