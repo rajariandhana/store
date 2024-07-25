@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -63,3 +64,4 @@ Route::get('cart',[CartController::class,'ShowCart']);
 Route::post('/cartStore',[CartController::class,'store']);
 Route::post('cartClear',[CartController::class,'Clear']);
 
+Route::get('/checkout',[OrderController::class,'checkout']);
