@@ -44,6 +44,10 @@ class CartController extends Controller
         }
         return $items;
     }
+    public function GetWeight(){
+        $items = self::GetItems();
+        return count($items)*500;
+    }
     // public function TotalPrice(){
     //     $items = self::GetItems();
     //     $totalPrice=0;

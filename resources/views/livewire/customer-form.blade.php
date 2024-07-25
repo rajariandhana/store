@@ -45,7 +45,18 @@
                 <input required type="text" name="customerAddress"
                     class="bg-gray-50 border border-gray-300  text-sm rounded w-full h-8 px-2 py-2">
             @endif
-
+            @if (!is_null($selectedProvince) && !is_null($selectedCity))
+                {{-- <span>{{$deliveryCost}}</span> --}}
+                @foreach ($deliveryOptions as $deliveryOption)
+                    {{-- <span>{{$deliveryOption}}</span> --}}
+                    <div>
+                        <span>Service: {{$deliveryOption['service']}}</span>
+                        <span>Delivery fee: {{$deliveryOption['cost'][0]['value']}}</span>
+                        <span>Delivery time: {{$deliveryOption['cost'][0]['etd']}}</span>
+                    </div>
+                    {{-- @dump($deliveryOption) --}}
+                @endforeach
+            @endif
         </div>
     </form>
 </div>
