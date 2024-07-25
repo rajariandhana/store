@@ -71,6 +71,7 @@ class CustomerForm extends Component
         $this->selectedCourier = $courier;
         $cc = new CartController;
         $this->itemsWeight = $cc->GetWeight();
+        $this->deliveryOptions = null;
         $ops = $this->GetDeliveryOptions($this->selectedCity,$this->itemsWeight,$this->selectedCourier);
         $this->deliveryOptions = $ops['rajaongkir']['results'][0]['costs'];
         $this->selectedDelivery = null;
@@ -81,8 +82,8 @@ class CustomerForm extends Component
     public function GetDeliveryOptions($city_id,$weight,$courier){
         $response = Http::withHeaders([
             // 'Content-Type' => 'application/x-www-form-urlencoded',
-            'key' => env('API_RAJA_ONGKIR'),
-        ])->post('https://api.rajaongkir.com/starter/cost', [
+            'key' => env('API_ONGKIR_KEY'),
+        ])->post(env('API_ONGKIR_BASE').'cost', [
             'origin' => 115,
             'destination' => $city_id,
             'weight' => $weight,
@@ -114,8 +115,8 @@ class CustomerForm extends Component
     public function getData($endpoint)
     {
         $response = Http::withHeaders([
-            'key' => env('API_RAJA_ONGKIR'),
-        ])->get("https://api.rajaongkir.com/starter/$endpoint");
+            'key' => env('API_ONGKIR_KEY'),
+        ])->get(env('API_ONGKIR_BASE')."$endpoint");
 
         if ($response->successful()) {
             $data =$response->json();

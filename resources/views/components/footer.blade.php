@@ -2,7 +2,7 @@
     @php
         $productLinks = [
             ['name' => 'Top', 'link' => '/top'],
-            ['name' => 'Bot', 'link' => '/bot'],
+            ['name' => 'Bot', 'link' => '/bottom'],
             ['name' => 'Footwear', 'link' => '/footwear'],
             ['name' => 'Other', 'link' => '/other'],
         ];

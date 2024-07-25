@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Http\Controllers\CartController;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Http\Request;
@@ -66,7 +67,10 @@ class OrderController extends Controller
         //
     }
     public function checkout(){
-        return view('checkout');
+        $cc = new CartController;
+        return view('checkout',[
+            'items'=>$cc->GetItems()
+        ]);
     }
     public function provinces(){
         $datas = self::getData("city?province=5");

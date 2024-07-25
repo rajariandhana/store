@@ -10,11 +10,12 @@ class Cart extends Component
     public $items;
     // public $totalPrice;
     // public $totalItems;
-
+    public $checkingOut;
     public function mount()
     {
         $cc = new CartController();
         $this->items = $cc->GetItems();
+        $this->checkingOut = false;
     }
     public function IncrementItem($key)
     {
@@ -64,6 +65,13 @@ class Cart extends Component
             $total += $item['quantity'];
         }
         return $total;
+    }
+
+    public function ToggleCheckOut(){
+        // redirect()->to('/checkout');
+        // dd("ted");
+        $this->checkingOut = !$this->checkingOut;
+        // dump($this->checkingOut);
     }
 
     public function render()
