@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminController;
+// use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Models\Product;
@@ -66,4 +69,24 @@ Route::post('cartClear',[CartController::class,'Clear']);
 
 Route::get('/checkout',[OrderController::class,'checkout']);
 
-Route::get('/orders',[OrderController::class,'orders']);
+// Route::get('/orders',[OrderController::class,'orders']);
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [AdminAuthController::class, 'login']);
+    Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
+    });
+});
+
+
+
+
+
+// Route::middleware(['auth:admin'])->group(function () {
+//     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
+// });
