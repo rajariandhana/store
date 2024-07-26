@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Http\Controllers\CartController;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -88,5 +89,29 @@ class OrderController extends Controller
         } else {
             return response()->json(['error' => 'Unable to fetch data'], 500);
         }
+    }
+
+    public function CreateOrder($orderData, $productData){
+        $order = new Order($orderData);
+        $order->id = (string) Str::uuid();
+        // $order->id = (string) Str::uuid();
+        $order->save();
+
+        // Attach products to the order with pivot data
+        foreach ($productData as $data) {
+            $order->products()->attach($data['product_id'], [
+                'price' => $data['price'],
+                'size' => $data['size'],
+                'color' => $data['color'],
+                'quantity' => $data['quantity']
+            ]);
+        }
+        return "SUCCESS";
+    }
+
+    public function orders(){
+        return view('orders',[
+            'orders'=>Order::all()
+        ]);
     }
 }

@@ -3,11 +3,21 @@
 namespace App\Livewire;
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Exception;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
+use Livewire\Attributes\Rule;
+
 class CustomerForm extends Component
 {
+    #[Rule('required|min:2|max:50')]
+    public $customerName;
+    #[Rule('required|min:5|email|max:255')]
+    public $customerEmail;
+    #[Rule('required|min:5|max:255')]
+    public $customerAddress;
+
     public $provinces;
     public $selectedProvince=null;
     public $cities;
@@ -125,5 +135,44 @@ class CustomerForm extends Component
         } else {
             return response()->json(['error' => 'Unable to fetch data'], 500);
         }
+    }
+    public function CreateOrder(){
+        // dd("test");
+        // dd($this->GenerateOrderData());
+        $orderData = $this->GenerateOrderData();
+        $productData = $this->GenerateProductData();
+        // dump($orderData);
+        // dump($productData);
+        $oc = new OrderController;
+        $res = $oc->CreateOrder($orderData,$productData);
+        if($res=="SUCCESS"){
+            $cc=new CartController;
+            $cc->Clear();
+            return redirect('orders');
+        }
+    }
+    private function GenerateOrderData(){
+        $validated = $this->validate();
+        $orderData = [
+            'name' => $this->customerName,
+            'email' => $this->customerEmail,
+            'province_id' => $this->selectedProvince,
+            'city_id' => $this->selectedCity,
+            'address' => $this->customerAddress,
+            'courier' => $this->selectedCourier,
+            'courierService' => $this->selectedDelivery['service'],
+            'deliveryTime' => $this->selectedDelivery['cost'][0]['etd'],
+            'weight' => $this->itemsWeight,
+            'deliveryCost' => $this->deliveryCost,
+            'subTotal' => $this->subTotal,
+            'totalCost' => $this->totalCost,
+            'status' => "waiting for payment"
+        ];
+        // dd($orderData);
+        return $orderData;
+    }
+    private function GenerateProductData(){
+        $cc = new CartController;
+        return $cc->GenerateProductData();
     }
 }

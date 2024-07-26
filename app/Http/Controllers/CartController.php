@@ -37,6 +37,8 @@ class CartController extends Controller
                     'key'=>$key,
                     'product_id'=>$product_id,
                     'variant'=>$selectedSize." - ".$selectedColor,
+                    'size'=>$selectedSize,
+                    'color'=>$selectedColor,
                     'quantity'=>$value,
                     'product'=>$product
                 ];
@@ -152,5 +154,20 @@ class CartController extends Controller
         // dump($product_id);
         // dump($selectedSize);
         // dump($selectedColor);
+    }
+
+    public function GenerateProductData(){
+        $items = self::GetItems();
+        $productData = [];
+        foreach($items as $item){
+            $productData[]=[
+                'product_id'=>$item['product_id'],
+                'price'=>$item['product']->price,
+                'size'=>$item['size'],
+                'color'=>$item['color'],
+                'quantity'=>(int)$item['quantity']
+            ];
+        }
+        return $productData;
     }
 }
