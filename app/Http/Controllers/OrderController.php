@@ -89,4 +89,20 @@ class OrderController extends Controller
             return response()->json(['error' => 'Unable to fetch data'], 500);
         }
     }
+
+    public function CreateOrder($orderData, $productData){
+        $order = new Order($orderData);
+        // $order->id = (string) Str::uuid();
+        $order->save();
+
+        // Attach products to the order with pivot data
+        foreach ($productData as $data) {
+            $order->products()->attach($data['product_id'], [
+                'price' => $data['price'],
+                'size' => $data['size'],
+                'color' => $data['color'],
+                'quantity' => $data['quantity']
+            ]);
+        }
+    }
 }
