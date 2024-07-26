@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Http\Controllers\CartController;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -92,6 +93,7 @@ class OrderController extends Controller
 
     public function CreateOrder($orderData, $productData){
         $order = new Order($orderData);
+        $order->id = (string) Str::uuid();
         // $order->id = (string) Str::uuid();
         $order->save();
 
@@ -104,5 +106,12 @@ class OrderController extends Controller
                 'quantity' => $data['quantity']
             ]);
         }
+        return "SUCCESS";
+    }
+
+    public function orders(){
+        return view('orders',[
+            'orders'=>Order::all()
+        ]);
     }
 }

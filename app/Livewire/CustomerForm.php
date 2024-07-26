@@ -144,7 +144,12 @@ class CustomerForm extends Component
         // dump($orderData);
         // dump($productData);
         $oc = new OrderController;
-        $oc->CreateOrder($orderData,$productData);
+        $res = $oc->CreateOrder($orderData,$productData);
+        if($res=="SUCCESS"){
+            $cc=new CartController;
+            $cc->Clear();
+            return redirect('orders');
+        }
     }
     private function GenerateOrderData(){
         $validated = $this->validate();

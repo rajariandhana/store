@@ -15,7 +15,7 @@ class Cart extends Component
     {
         $cc = new CartController();
         $this->items = $cc->GetItems();
-        $this->checkingOut = false;
+        $this->checkingOut = true;
     }
     public function IncrementItem($key)
     {
