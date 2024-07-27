@@ -148,7 +148,7 @@ class CustomerForm extends Component
         if($res=="SUCCESS"){
             $cc=new CartController;
             $cc->Clear();
-            return redirect('orders');
+            return redirect('home');
         }
     }
     private function GenerateOrderData(){
