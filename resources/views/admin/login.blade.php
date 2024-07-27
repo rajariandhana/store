@@ -19,6 +19,15 @@
         <main>
             <div class="flex justify-center px-6 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="bg-gray-50 w-96 px-4 py-4 rounded-lg shadow-sm">
+                    <div class="w-full flex justify-center mb-3">
+                    <a href="{{url('home')}}" class="no-underline text-indigo-500 flex gap-2 items-center">
+                        <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+                          </svg>
+
+                        <h4 class="mb-0">Store</h4>
+                    </a>
+                </div>
                     <form method="POST" action="{{ route('admin.login') }}">
                         @csrf
                         <div>
