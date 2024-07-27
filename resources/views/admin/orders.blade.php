@@ -1,6 +1,6 @@
 <x-admin-layout>
     <h1>Orders</h1>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    {{-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 bg-gray-50">
                 <tr>
@@ -39,5 +39,6 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div> --}}
+    @livewire('order-filter')
 </x-admin-layout>
