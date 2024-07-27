@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CartController;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -18,7 +21,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.orders', compact('orders'));
     }
 
     /**
@@ -114,5 +117,12 @@ class OrderController extends Controller
         return view('orders',[
             'orders'=>Order::all()
         ]);
+    }
+
+    public function showOrderProducts($order_id)
+    {
+        $order = Order::with('products')->findOrFail($order_id); // Fetch the order along with its products
+// dd($order);
+        return view('admin.order-products', compact('order'));
     }
 }

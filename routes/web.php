@@ -79,7 +79,8 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-        Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
+        Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
+        Route::get('order/{order_id}', [OrderController::class, 'showOrderProducts'])->name('admin.order-product');
     });
 });
 
