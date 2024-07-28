@@ -19,6 +19,11 @@ Route::get('/', function () {
 Route::get('home', function () {
     return view('home',['title'=>'Home Page']);
 });
+
+Route::get('home2', function () {
+    return view('home',['title'=>'Home Page']);
+});
+
 Route::get('products', function () {
     $products = Product::get();
     dump($products);
