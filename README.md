@@ -33,3 +33,5 @@ Authentication and authorization is used to create a view for owner (by going to
 - order history in local storage?
 - MORE SECURE
 - better owner view
+
+*I honestly don't know why an app like this would be used in Indonesia. We got easy to use platforms such as Tokopedia, Bukalapak, Shopee, others. Customers don't need an account for every other store they visit, an integrated and secure payment, track where their order is at, order histories, collect discounts. Also the owners they don't need to commission a developer to create a platform that may or may not be safe enough.
