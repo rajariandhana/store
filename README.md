@@ -5,6 +5,7 @@ This project is a simple (not so simple in the making tho) store's website that 
 - [AlpineJS](https://alpinejs.dev)
 - [Laravel](https://laravel.com/)
 - [Livewire](https://livewire.laravel.com)
+
 *Can't remember if alpine is used at all, pretty sure i just used livewire instead
 
 <!-- ## Features
