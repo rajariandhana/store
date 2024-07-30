@@ -1,10 +1,10 @@
 ## About
 
-This project is a simple (not so simple in the making tho) store's website that implements TALL stack:
-- Tailwind CSS
-- Alpine JS
-- Laravel
-- Livewire
+This project is a simple (not so simple in the making tho) store's website that implements [TALL stack](https://tallstack.dev):
+- [Tailwind CSS](https://tailwindcss.com)
+- [AlpineJS](https://alpinejs.dev)
+- [Laravel](https://laravel.com/)
+- [Livewire](https://livewire.laravel.com)
 *Can't remember if alpine is used at all, pretty sure i just used livewire instead
 
 <!-- ## Features
