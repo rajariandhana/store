@@ -26,7 +26,7 @@
         <x-navbar></x-navbar>
         {{-- <x-header>{{$title}}</x-header> --}}
         <main>
-            <div class="flex justify-center px-6 py-6 pt-32 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex flex-col justify-center h-screen px-6 py-6 pt-32 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {{$slot}}
                 {{-- @yield('content') --}}
             </div>

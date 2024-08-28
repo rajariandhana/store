@@ -62,13 +62,16 @@ class="fixed top-0 z-20 flex flex-row items-center justify-between w-full px-6 p
                     <li>
                         <a class="text-white" href="{{route('other')}}">Other</a>
                     </li>
+                    <li>
+                        <a class="text-white" href="{{route('cart')}}">Cart</a>
+                    </li>
                 </ul>
-                <a href="{{route('cart')}}" class="flex flex-row items-center gap-2 px-2 py-2 text-white bg-gray-800 rounded-lg">
+                {{-- <a href="{{route('cart')}}" class="flex flex-row items-center gap-2 px-2 py-2 text-white bg-gray-800 rounded-lg">
                     <svg class="w-8 h-8 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
                       </svg>
                     <span>Shopping Cart</span>                  
-                </a>
+                </a> --}}
             </div>
         </div>
         
