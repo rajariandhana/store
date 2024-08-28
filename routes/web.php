@@ -14,11 +14,9 @@ Route::get('test', function () {
     return view('main2',['title'=>'test Page']);
 });
 Route::get('/', function () {
-    return view('home',['title'=>'Home Page'])->name('home');
-});
-Route::get('home', function () {
+    // return view('home',['title'=>'Home Page'])->name('home');
     return view('home',['title'=>'Home Page']);
-});
+})->name('home');
 
 Route::get('home2', function () {
     return view('home',['title'=>'Home Page']);
@@ -46,48 +44,48 @@ Route::get('product/{product:product_id}',function(Product $product){
 Route::get('top',function(){
     $products = Product::where('category_id','like','top')->get();
     return view('products',['title'=> 'Top', 'products'=>$products]);
-});
+})->name('top');
 Route::get('bottom',function(){
     $products = Product::where('category_id','like','bottom')->get();
     return view('products',['title'=> 'Bottom', 'products'=>$products]);
-});
+})->name('bottom');
 Route::get('footwear',function(){
     $products = Product::where('category_id','like','footwear')->get();
     return view('products',['title'=> 'Footwear', 'products'=>$products]);
-});
+})->name('footwear');
 Route::get('other',function(){
     $products = Product::where('category_id','like','other')->get();
     return view('products',['title'=> 'Other', 'products'=>$products]);
-});
+})->name('other');
 
-Route::get('cart',function(){
-    return view('cart',
-        [
-            'title'=>'Cart',
-            // 'items'=>[CartController::class,'GetItems']
-        ]);
-});
-Route::get('cart',[CartController::class,'ShowCart']);
+// Route::get('cart',function(){
+//     return view('cart',
+//         [
+//             'title'=>'Cart',
+//             // 'items'=>[CartController::class,'GetItems']
+//         ]);
+// });
+Route::get('cart',[CartController::class,'ShowCart'])->name('cart');
 
 Route::post('/cartStore',[CartController::class,'store']);
 Route::post('cartClear',[CartController::class,'Clear']);
 
 Route::get('/checkout',[OrderController::class,'checkout']);
 
-// Route::get('/orders',[OrderController::class,'orders']);
+Route::get('/orders',[OrderController::class,'orders']);
 
 
-Route::prefix('admin')->group(function () {
-    Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('login', [AdminAuthController::class, 'login']);
-    Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+// Route::prefix('admin')->group(function () {
+//     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+//     Route::post('login', [AdminAuthController::class, 'login']);
+//     Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
-    Route::middleware(['auth:admin'])->group(function () {
-        Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-        Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
-        Route::get('order/{order_id}', [OrderController::class, 'showOrderProducts'])->name('admin.order-product');
-    });
-});
+//     Route::middleware(['auth:admin'])->group(function () {
+//         Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+//         Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
+//         Route::get('order/{order_id}', [OrderController::class, 'showOrderProducts'])->name('admin.order-product');
+//     });
+// });
 
 
 

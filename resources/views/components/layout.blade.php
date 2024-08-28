@@ -12,15 +12,21 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireStyles
+    <style>
+        a{
+            text-decoration-line: none;
+            /* color:black; */
+        }
+    </style>
 </head>
 
 {{-- <body class="h-full bg-red-100 bg-gray-50 md:bg-green-100 lg:bg-blue-100"> --}}
 <body class="h-full">
-    <div class="min-h-full">
+    {{-- <div class="min-h-full"> --}}
         <x-navbar></x-navbar>
         {{-- <x-header>{{$title}}</x-header> --}}
         <main>
-            <div class="flex justify-center px-6 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex justify-center px-6 py-6 pt-32 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {{$slot}}
                 {{-- @yield('content') --}}
             </div>
@@ -28,7 +34,7 @@
         <x-footer>
 
         </x-footer>
-    </div>
+    {{-- </div> --}}
     @livewireScripts
 </body>
 
