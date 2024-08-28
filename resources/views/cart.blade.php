@@ -1,5 +1,9 @@
 <x-layout>
-    <livewire:cart :items="$items"/>
+    @if ($items)
+        <livewire:cart :items="$items"/>
+    @else
+        <span class="">Cart is empty</span>
+    @endif
 
     {{-- <div class="flex flex-row gap-10">
         <div class="flex flex-col gap-3 bg-red-400">
